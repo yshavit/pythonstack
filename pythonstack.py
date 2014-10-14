@@ -14,6 +14,7 @@ def print_stack_to_file(output=sys.stdout):
                 c.co_filename, f.f_lineno, c.co_name))
             f = f.f_back
         output.write('\n')
+    output.flush()
 
 
 def load(sig=signal.SIGUSR1, output=sys.stdout):

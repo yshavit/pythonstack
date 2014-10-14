@@ -1,4 +1,5 @@
 import datetime
+import os
 import signal
 import sys
 
@@ -6,7 +7,8 @@ import sys
 def print_stack_to_file(output=sys.stdout):
     timestamp = datetime.datetime.now().isoformat()
     header = '-' * len(timestamp)
-    output.write('Threads at %s:\n%s\n' % (timestamp, header))
+    pid = os.getpid()
+    output.write('Threads for %s at %s:\n%s\n' % (pid, timestamp, header))
     for f in sys._current_frames().values():
         while f is not None:
             c = f.f_code
